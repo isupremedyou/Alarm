@@ -13,7 +13,7 @@ class Alarm {
     // MARK: - Properties
     var fireDate: Date
     var name: String
-    var isOn: Bool
+    var enabled: Bool
     let uuid: String
     
     var fireDateAsString: String {
@@ -25,10 +25,10 @@ class Alarm {
     }
     
     // MARK: - Initializer
-    init(_ fireDate: Date, _ name: String = "Alarm") {
+    init(_ fireDate: Date, _ name: String = "Alarm", _ enabled: Bool) {
         self.fireDate = fireDate
         self.name = name
-        self.isOn = true
+        self.enabled = enabled
         self.uuid = UUID().uuidString
         print(self.uuid)
     }
@@ -37,4 +37,10 @@ class Alarm {
 
 extension Alarm: Equatable {
     
+    static func == (lhs: Alarm, rhs: Alarm) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
+    
 }
+
+extension Alarm: Codable
