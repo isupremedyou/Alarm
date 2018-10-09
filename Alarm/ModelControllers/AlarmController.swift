@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 // MARK: - Protocol
 
@@ -16,7 +17,26 @@ protocol AlarmScheduler: class {
 }
 
 extension AlarmScheduler {
+    func scheduleUserNotifications(for alarm: Alarm) {
+        let content = UNMutableNotificationContent()
+        content.title = "Alarm Alert"
+        content.body = alarm.name
+        content.sound = UNNotificationSound.default
+        
+        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: alarm.fireDate)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let notificationRequest = UNNotificationRequest(identifier: alarm.uuid, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(notificationRequest) { (_) in
+            print("Notification added to notification center.")
+        }
+    }
     
+    func cancelUserNotifications(for alarm: Alarm) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [alarm.uuid])
+    }
 }
 
 // MARK: - Classes
@@ -58,6 +78,7 @@ extension AlarmController {
         let newAlarm = Alarm(fireDate, name, enabled)
         
         alarms.append(newAlarm)
+        scheduleUserNotifications(for: newAlarm)
         
         saveToPersistentStore()
         
@@ -72,11 +93,18 @@ extension AlarmController {
         alarms[index].name = name
         alarms[index].enabled = enabled
         
+        scheduleUserNotifications(for: alarms[index])
+        
         saveToPersistentStore()
     }
     
     func toggleEnabled(for alarm: Alarm) {
         alarm.enabled = !alarm.enabled
+        if alarm.enabled {
+            scheduleUserNotifications(for: alarm)
+        } else {
+            cancelUserNotifications(for: alarm)
+        }
     }
     
     // Delete
@@ -84,6 +112,7 @@ extension AlarmController {
         guard let index = alarms.firstIndex(of: alarm) else { return }
         
         alarms.remove(at: index)
+        cancelUserNotifications(for: alarm)
         
         saveToPersistentStore()
     }
@@ -126,3 +155,5 @@ extension AlarmController {
     }
     
 }
+
+extension AlarmController: AlarmScheduler { }
