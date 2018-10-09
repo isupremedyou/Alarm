@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Alarm {
+class Alarm: Codable {
     
     // MARK: - Properties
     var fireDate: Date
@@ -18,14 +18,14 @@ class Alarm {
     
     var fireDateAsString: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         
         return dateFormatter.string(from: fireDate)
     }
     
     // MARK: - Initializer
-    init(_ fireDate: Date, _ name: String = "Alarm", _ enabled: Bool) {
+    init(_ fireDate: Date, _ name: String, _ enabled: Bool) {
         self.fireDate = fireDate
         self.name = name
         self.enabled = enabled
@@ -42,5 +42,3 @@ extension Alarm: Equatable {
     }
     
 }
-
-extension Alarm: Codable

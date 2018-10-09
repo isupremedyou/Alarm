@@ -13,6 +13,9 @@
 		A668EC37216C0445002D405A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A668EC35216C0445002D405A /* LaunchScreen.storyboard */; };
 		A668EC43216C04DE002D405A /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A668EC42216C04DE002D405A /* Alarm.swift */; };
 		A668EC45216C04ED002D405A /* AlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A668EC44216C04ED002D405A /* AlarmController.swift */; };
+		A668EC49216C5ED0002D405A /* AlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A668EC48216C5ED0002D405A /* AlarmListTableViewController.swift */; };
+		A668EC4B216C5EDD002D405A /* AlarmDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A668EC4A216C5EDD002D405A /* AlarmDetailTableViewController.swift */; };
+		A668EC4E216C5F12002D405A /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A668EC4D216C5F12002D405A /* SwitchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		A668EC38216C0445002D405A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A668EC42216C04DE002D405A /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		A668EC44216C04ED002D405A /* AlarmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmController.swift; sourceTree = "<group>"; };
+		A668EC48216C5ED0002D405A /* AlarmListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListTableViewController.swift; sourceTree = "<group>"; };
+		A668EC4A216C5EDD002D405A /* AlarmDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailTableViewController.swift; sourceTree = "<group>"; };
+		A668EC4D216C5F12002D405A /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 				A668EC40216C0467002D405A /* ModelControllers */,
 				A668EC3F216C045D002D405A /* Model */,
 				A668EC3E216C0450002D405A /* ViewControllers */,
+				A668EC4C216C5EF4002D405A /* View */,
 				A668EC41216C049A002D405A /* Resources */,
 			);
 			path = Alarm;
@@ -68,6 +75,8 @@
 		A668EC3E216C0450002D405A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A668EC48216C5ED0002D405A /* AlarmListTableViewController.swift */,
+				A668EC4A216C5EDD002D405A /* AlarmDetailTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -97,6 +106,14 @@
 				A668EC38216C0445002D405A /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A668EC4C216C5EF4002D405A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A668EC4D216C5F12002D405A /* SwitchTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,8 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A668EC2D216C0444002D405A /* AppDelegate.swift in Sources */,
+				A668EC49216C5ED0002D405A /* AlarmListTableViewController.swift in Sources */,
 				A668EC43216C04DE002D405A /* Alarm.swift in Sources */,
+				A668EC4B216C5EDD002D405A /* AlarmDetailTableViewController.swift in Sources */,
 				A668EC45216C04ED002D405A /* AlarmController.swift in Sources */,
+				A668EC4E216C5F12002D405A /* SwitchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7V4LGA7P62;
-				INFOPLIST_FILE = Alarm/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Alarm/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7V4LGA7P62;
-				INFOPLIST_FILE = Alarm/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Alarm/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

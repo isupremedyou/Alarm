@@ -18,8 +18,21 @@ class AlarmController {
     // Shared truth
     var alarms: [Alarm] = []
     
+//    // Mock data
+//    var mockDate = Date()
+//    
+//    var mockAlarms: [Alarm] {
+//        let alarm1 = Alarm(mockDate, "Alarm 1", true)
+//        let alarm2 = Alarm(mockDate.addingTimeInterval(60 * 60 * 24), "Alarm 2", true)
+//        let alarm3 = Alarm(mockDate.addingTimeInterval(60 * 60 * 48), "Alarm 3", true)
+//        
+//        return [alarm1, alarm2, alarm3]
+//    }
+    
+    
     init() {
         loadFromPersistentStore()
+//        self.alarms = self.mockAlarms
     }
     
 }
@@ -34,6 +47,8 @@ extension AlarmController {
         
         alarms.append(newAlarm)
         
+        saveToPersistentStore()
+        
         return newAlarm
     }
     
@@ -44,6 +59,12 @@ extension AlarmController {
         alarms[index].fireDate = fireDate
         alarms[index].name = name
         alarms[index].enabled = enabled
+        
+        saveToPersistentStore()
+    }
+    
+    func toggleEnabled(for alarm: Alarm) {
+        alarm.enabled = !alarm.enabled
     }
     
     // Delete
@@ -51,6 +72,8 @@ extension AlarmController {
         guard let index = alarms.firstIndex(of: alarm) else { return }
         
         alarms.remove(at: index)
+        
+        saveToPersistentStore()
     }
     
     
