@@ -8,6 +8,19 @@
 
 import Foundation
 
+// MARK: - Protocol
+
+protocol AlarmScheduler: class {
+    func scheduleUserNotifications(for alarm: Alarm)
+    func cancelUserNotifications(for alarm: Alarm)
+}
+
+extension AlarmScheduler {
+    
+}
+
+// MARK: - Classes
+
 class AlarmController {
     
     // MARK: - Constants & Variables
@@ -31,7 +44,6 @@ class AlarmController {
     
     
     init() {
-        loadFromPersistentStore()
 //        self.alarms = self.mockAlarms
     }
     
@@ -80,7 +92,7 @@ extension AlarmController {
     // MARK: - Persistence Functions
     
     // Create the full fileURL and return it
-    func fileURL() -> URL {
+    private var fullURL: URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectory = paths[0]
         let filename = "alarms.json"
@@ -90,11 +102,11 @@ extension AlarmController {
     }
     
     // Save data to the persistent store
-    func saveToPersistentStore() {
+    private func saveToPersistentStore() {
         let je = JSONEncoder()
         do {
             let data = try je.encode(alarms)
-            try data.write(to: fileURL())
+            try data.write(to: fullURL)
         } catch let error {
             print(error)
         }
@@ -104,7 +116,7 @@ extension AlarmController {
     func loadFromPersistentStore() {
         let jd = JSONDecoder()
         do {
-            let data = try Data(contentsOf: fileURL())
+            let data = try Data(contentsOf: fullURL)
             let alarms = try jd.decode([Alarm].self, from: data)
             self.alarms = alarms
         } catch let error {
